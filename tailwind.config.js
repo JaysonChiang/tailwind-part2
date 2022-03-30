@@ -1,6 +1,10 @@
 module.exports = {
+  presets: [require('./news_styles')],
+  corePlugins: {
+    container: false,
+  },
   purge: {
-    enabled: true,
+    enabled: false,
     content: ['./dist/**/*.html'],
   },
   darkMode: 'class',
@@ -8,14 +12,37 @@ module.exports = {
     debugScreens: {
       position: ['top', 'left'],
     },
-    extend: {
-      fontFamily: {
-        headline: ['Oswald'],
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '0.5rem',
+        sm: '1rem',
+        lg: '1.5rem',
+        xl: '2rem',
       },
-      colors: {
-        mainColor: '#1E293B',
+    },
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            h1: {
+              fontWeight: '600',
+            },
+            h2: {
+              fontWeight: '400',
+            },
+          },
+        },
       },
     },
   },
-  plugins: [require('tailwindcss-debug-screens')],
+  variants: {
+    extend: {
+      width: ['hover'],
+    },
+  },
+  plugins: [
+    require('tailwindcss-debug-screens'),
+    require('@tailwindcss/typography'),
+  ],
 };
